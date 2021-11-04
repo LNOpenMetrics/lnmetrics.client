@@ -1,5 +1,5 @@
 <div align="center">
-  <h1>clightning.dart</h1>
+  <h1>lnmetrics.client</h1>
 
   <img src="https://github.com/OpenLNMetrics/lnmetrics.icons/blob/main/current/res/mipmap-xxxhdpi/ic_launcher.png" />
 
