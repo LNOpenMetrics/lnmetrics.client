@@ -1,16 +1,36 @@
-# client
+<div align="center">
+  <h1>clightning.dart</h1>
 
-A new Flutter project.
+  <img src="https://github.com/OpenLNMetrics/lnmetrics.icons/blob/main/current/res/mipmap-xxxhdpi/ic_launcher.png" />
 
-## Getting Started
+  <p>
+    <strong> TODO: </strong>
+  </p>
 
-This project is a starting point for a Flutter application.
+  <p>
+   <img alt="GitHub branch checks state" src="https://img.shields.io/github/checks-status/OpenLNMetrics/lnmetrics.client/main?style=flat-square">
+  </p>
 
-A few resources to get you started if this is your first Flutter project:
+  <h4>
+    <a href="https://github.com/OpenLNMetrics">Project Homepage</a>
+  </h4>
+</div>
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+## Table of Content
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- Introduction
+- How Contribute
+- License
+
+## Introduction
+TODO
+
+## How to Use
+TODO
+
+## How Contribute
+TODO
+
+## License
+
+TODO
