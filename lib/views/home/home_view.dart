@@ -1,11 +1,16 @@
-import 'package:client/model/LNNode.dart';
+import 'package:client/api/lnmetrics_api.dart';
+import 'package:client/components/card/expansion_card.dart';
+import 'package:client/model/ln_node.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/painting.dart';
 import 'package:material_floating_search_bar/material_floating_search_bar.dart';
 
 class HomeView extends StatelessWidget {
-  const HomeView({Key? key, required this.title}) : super(key: key);
+  HomeView({Key? key, required this.title}) : super(key: key);
 
   final String title;
+  final LNMetricsAPI metricsAPI =
+      LNMetricsAPI(baseUrl: "https://magic.bublina.eu.org/query");
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +35,7 @@ class HomeView extends StatelessWidget {
   Widget _buildMainView(BuildContext context) {
     return Column(
       children: [
-        Spacer(),
+        const SizedBox(width: 20, height: 90),
         Expanded(child: _buildScrollView(context))
       ],
     );
@@ -90,20 +95,33 @@ class HomeView extends StatelessWidget {
 
   /// Build the scroll view with all the informations
   Widget _buildScrollView(BuildContext context) {
-    var nodes = [LNNode(nodeId: "one")];
-    return CustomScrollView(slivers: [
-      SliverList(
-          delegate: SliverChildBuilderDelegate(
-        (BuildContext context, int index) {
-          return Center(child: _buildLNNodeCard(context, nodes[index]));
-        },
-        childCount: nodes.length,
-      ))
-    ]);
+    return FutureBuilder<List<LNNode>>(
+        future: metricsAPI.listOfNodes(),
+        builder: (context, AsyncSnapshot<List<LNNode>> snapshot) {
+          if (snapshot.hasData) {
+            var nodes = snapshot.data ?? [];
+            return CustomScrollView(slivers: [
+              SliverList(
+                  delegate: SliverChildBuilderDelegate(
+                (BuildContext context, int index) {
+                  return Center(child: _buildLNNodeCard(context, nodes[index]));
+                },
+                childCount: nodes.length,
+              ))
+            ]);
+          } else {
+            return Container();
+          }
+        });
   }
 
   /// Build card view about the node
   Widget _buildLNNodeCard(BuildContext context, LNNode node) {
-    return Text(node.nodeId);
+    return ExpandedCard(
+      margin: const EdgeInsets.only(left: 50, right: 50, top: 12, bottom: 12),
+      child: Text(node.nodeId),
+      expandedChild:
+          const Text("TODO: adding some information about the nodes"),
+    );
   }
 }

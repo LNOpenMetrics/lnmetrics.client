@@ -14,6 +14,12 @@ class GraphQLClient {
     queries[key] = body;
   }
 
+  void _checkResponse(Map<String, dynamic> response) {
+    if (response.containsKey("data") && response["data"] == null) {
+      throw Exception("Error during the request");
+    }
+  }
+
   Future<Map<String, dynamic>> useQuery(
       {required String key, Map<String, dynamic> variables = const {}}) async {
     if (!queries.containsKey(key)) {
@@ -21,6 +27,8 @@ class GraphQLClient {
     }
     var query = queries[key]!;
     var request = {"query": query};
-    return await protocol.runQuery(url: baseUrl, body: request);
+    var response = await protocol.runQuery(url: baseUrl, body: request);
+    _checkResponse(response);
+    return response["data"];
   }
 }
