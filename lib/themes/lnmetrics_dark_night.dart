@@ -17,7 +17,16 @@ class LNMetricsDarkNight extends LNMetricsThemeApp {
       brightness: Brightness.dark,
       primaryColor: const Color.fromARGB(255, 209, 154, 102),
       backgroundColor: const Color.fromARGB(255, 40, 44, 52),
-      cardColor: const Color.fromARGB(255, 40, 44, 52),
+      primaryTextTheme: const TextTheme(
+        bodyText1: TextStyle(),
+        bodyText2: TextStyle(),
+        headline5: TextStyle(fontWeight: FontWeight.bold),
+        caption: TextStyle(fontStyle: FontStyle.normal, fontSize: 13),
+      ).apply(
+        bodyColor: const Color.fromARGB(255, 151, 159, 173),
+        decorationColor: const Color.fromARGB(255, 151, 159, 173),
+      ),
+      cardColor: const Color.fromARGB(255, 47, 51, 61),
       selectedRowColor: const Color.fromARGB(255, 72, 79, 114),
       dialogBackgroundColor: const Color.fromARGB(255, 30, 30, 30),
       disabledColor: const Color.fromARGB(255, 98, 114, 164),
@@ -36,9 +45,9 @@ class LNMetricsDarkNight extends LNMetricsThemeApp {
             borderSide: BorderSide(color: Color.fromARGB(255, 98, 114, 164))),
         focusedBorder: OutlineInputBorder(
             borderSide: BorderSide(color: Color.fromARGB(255, 255, 121, 197))),
-        labelStyle: TextStyle(color: Color.fromARGB(255, 98, 114, 164)),
-        prefixStyle: TextStyle(color: Color.fromARGB(255, 98, 114, 164)),
-        suffixStyle: TextStyle(color: Color.fromARGB(255, 98, 114, 164)),
+        labelStyle: TextStyle(color: Color.fromARGB(255, 151, 159, 173)),
+        prefixStyle: TextStyle(color: Color.fromARGB(255, 151, 159, 173)),
+        suffixStyle: TextStyle(color: Color.fromARGB(255, 151, 159, 173)),
       ),
       textTheme: const TextTheme(
         bodyText1: TextStyle(),
@@ -46,11 +55,11 @@ class LNMetricsDarkNight extends LNMetricsThemeApp {
         headline5: TextStyle(fontWeight: FontWeight.bold),
         caption: TextStyle(fontStyle: FontStyle.normal, fontSize: 13),
       ).apply(
-        bodyColor: const Color.fromARGB(255, 98, 114, 164),
-        decorationColor: const Color.fromARGB(255, 98, 114, 164),
+        bodyColor: const Color.fromARGB(255, 151, 159, 173),
+        decorationColor: const Color.fromARGB(255, 151, 159, 173),
       ),
       iconTheme: Theme.of(context).iconTheme.copyWith(
-            color: const Color.fromARGB(255, 98, 114, 164),
+            color: const Color.fromARGB(255, 151, 159, 173),
           ),
       appBarTheme: const AppBarTheme(
         color: Color.fromARGB(255, 40, 44, 52),
