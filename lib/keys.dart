@@ -2,6 +2,5 @@
 
 class GraphQlKeys {
   static const String GRAPHQL_SERVER = "GRAPHQL_SERVER";
-
   static const String QUERY_LIST_NODES = "QUERY_SERVER";
 }

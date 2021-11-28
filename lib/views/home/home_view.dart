@@ -1,6 +1,8 @@
 import 'package:client/api/lnmetrics_api.dart';
 import 'package:client/components/card/expansion_card.dart';
+import 'package:client/keys.dart';
 import 'package:client/model/ln_node.dart';
+import 'package:client/utils/env/core/env_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:material_floating_search_bar/material_floating_search_bar.dart';
@@ -10,7 +12,7 @@ class HomeView extends StatelessWidget {
 
   final String title;
   final LNMetricsAPI metricsAPI =
-      LNMetricsAPI(baseUrl: "https://magic.bublina.eu.org/query");
+      LNMetricsAPI(baseUrl: "https://api.lnmetrics.info/query");
 
   @override
   Widget build(BuildContext context) {
