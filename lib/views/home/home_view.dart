@@ -1,10 +1,7 @@
 import 'package:client/api/lnmetrics_api.dart';
 import 'package:client/components/card/expansion_card.dart';
-import 'package:client/keys.dart';
 import 'package:client/model/ln_node.dart';
-import 'package:client/utils/env/core/env_manager.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/painting.dart';
 import 'package:material_floating_search_bar/material_floating_search_bar.dart';
 
 class HomeView extends StatelessWidget {
@@ -121,9 +118,8 @@ class HomeView extends StatelessWidget {
   Widget _buildLNNodeCard(BuildContext context, LNNode node) {
     return ExpandedCard(
       margin: const EdgeInsets.only(left: 50, right: 50, top: 12, bottom: 12),
-      child: Text(node.nodeId),
-      expandedChild:
-          const Text("TODO: adding some information about the nodes"),
+      child: Text(node.alias),
+      expandedChild: Text(node.nodeId),
     );
   }
 }
