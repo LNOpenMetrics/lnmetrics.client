@@ -1,15 +1,23 @@
 import 'package:client/api/lnmetrics_api.dart';
 import 'package:client/components/card/expansion_card.dart';
+import 'package:client/components/card/node_card.dart';
 import 'package:client/model/ln_node.dart';
+import 'package:client/utils/di/app_provider.dart';
+import 'package:client/views/home/app_view.dart';
 import 'package:flutter/material.dart';
 import 'package:material_floating_search_bar/material_floating_search_bar.dart';
 
-class HomeView extends StatelessWidget {
-  HomeView({Key? key, required this.title}) : super(key: key);
+/// The HomeView of the App
+class HomeView extends AppView {
+  HomeView({Key? key, required AppProvider provider, required this.title})
+      : super(key: key, provider: provider);
 
+  /// The title of the application
   final String title;
-  final LNMetricsAPI metricsAPI =
-      LNMetricsAPI(baseUrl: "https://api.lnmetrics.info/query");
+
+  /// The class that offer all the API change of the
+  /// Application
+  late final LNMetricsAPI metricsAPI = provider.get<LNMetricsAPI>();
 
   @override
   Widget build(BuildContext context) {
@@ -119,7 +127,7 @@ class HomeView extends StatelessWidget {
     return ExpandedCard(
       margin: const EdgeInsets.only(left: 50, right: 50, top: 12, bottom: 12),
       child: Text(node.alias),
-      expandedChild: Text(node.nodeId),
+      expandedChild: NodeCard(nodeID: node.nodeId, provider: provider),
     );
   }
 }
