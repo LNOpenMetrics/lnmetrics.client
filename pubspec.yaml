@@ -38,6 +38,8 @@ dependencies:
   dotenv: ^3.0.0
   logger: ^1.1.0
   material_floating_search_bar: ^0.3.6
+  graphql: ^5.0.1-beta.3
+  get_it: ^7.2.0
 
 dev_dependencies:
   flutter_test:
