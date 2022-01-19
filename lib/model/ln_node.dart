@@ -24,7 +24,8 @@ class LNNode {
       osInfo: OSInfo.fromJson(json["os_info"]),
       timezone: json["timezone"],
       // TODO check if the conversion is the right conversion
-      lastUpdate: DateTime.fromMillisecondsSinceEpoch(json["last_update"]),
+      lastUpdate:
+          DateTime.fromMillisecondsSinceEpoch(json["last_update"] * 1000),
     );
   }
 }

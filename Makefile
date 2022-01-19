@@ -9,3 +9,6 @@ fmt:
 
 check:
 	$(CC) test
+
+run:
+	$(CC) run -d chrome

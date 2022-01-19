@@ -1,11 +1,11 @@
 {
-    "name": "client",
-    "short_name": "client",
+    "name": "lnmetrics",
+    "short_name": "lnmetrics",
     "start_url": ".",
     "display": "standalone",
-    "background_color": "#0175C2",
-    "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
+    "background_color": "#282A36",
+    "theme_color": "#282A36",
+    "description": "Lightning Network Open Metrics",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [

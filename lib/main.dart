@@ -1,4 +1,4 @@
-import 'package:client/themes/lnmetrics_dark_night.dart';
+import 'package:client/themes/material_dracula.dart';
 import 'package:client/utils/di/app_provider.dart';
 import 'package:client/utils/di/provider_iml.dart';
 import 'package:client/views/home/app_view.dart';
@@ -17,8 +17,8 @@ class MyApp extends AppView {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    var title = "LN Open Metrics";
-    return LNMetricsDarkNight(
+    var title = "LN Metrics";
+    return MaterialDracula(
         title: title, home: HomeView(title: title, provider: provider));
   }
 }

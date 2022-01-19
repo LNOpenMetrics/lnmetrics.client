@@ -1,4 +1,5 @@
 import 'package:client/api/lnmetrics_api.dart';
+import 'package:client/components/charts/uptime_barchart.dart';
 import 'package:client/model/node_metric_one.dart';
 import 'package:client/utils/di/app_provider.dart';
 import 'package:client/views/home/app_view.dart';
@@ -17,9 +18,11 @@ class NodeCard extends AppView {
   NodeCard({Key? key, required AppProvider provider, required this.nodeID})
       : super(key: key, provider: provider);
 
-  Widget _inflate(
-      {required BuildContext context, required NodeMetricOne metricOne}) {
-    return Text(metricOne.lastUpdate.toString());
+  Widget _buildMetricView(
+      {required BuildContext context,
+      required String nodeID,
+      required NodeMetricOne metricOne}) {
+    return UpTimeBarChart(rating: metricOne.upTime, aliasNode: nodeID);
   }
 
   @override
@@ -30,7 +33,8 @@ class NodeCard extends AppView {
           if (snapshot.hasData) {
             var metricData = snapshot.data!;
             return Center(
-                child: _inflate(context: context, metricOne: metricData));
+                child: _buildMetricView(
+                    context: context, nodeID: nodeID, metricOne: metricData));
           } else {
             return const Text("Loading metric..");
           }
