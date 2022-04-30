@@ -107,7 +107,7 @@ class LNMetricsAPI {
               internal_failure
             }
           }
-          channes_info {
+          channels_info {
             channel_id
             node_id
             age
