@@ -38,7 +38,7 @@ class LNMetricsDarkNight extends LNMetricsThemeApp {
         onPrimary: Color.fromARGB(255, 209, 154, 102),
         primary: Color.fromARGB(255, 209, 154, 102),
         secondary: Color.fromARGB(255, 40, 42, 54),
-        primaryVariant: Color.fromARGB(255, 57, 60, 75),
+        primaryContainer: Color.fromARGB(255, 57, 60, 75),
       ),
       inputDecorationTheme: const InputDecorationTheme(
         enabledBorder: OutlineInputBorder(
