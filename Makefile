@@ -1,14 +1,19 @@
-CC=flutter
-FMT=format
+CC=pnpm
 
 default: fmt
+	$(CC) dev
+
+dep:
+	$(CC) install
 
 fmt:
-	$(CC) $(FMT) .
-	$(CC) analyze .
+	npx prettier --write .
+
+clean:
+	@rm -rf node_modules
 
 check:
 	$(CC) test
 
-run:
-	$(CC) run -d chrome
+build:
+	$(CC) build

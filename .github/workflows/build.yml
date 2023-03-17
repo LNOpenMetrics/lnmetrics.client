@@ -1,26 +1,27 @@
-name: Build Action
+name: Check build in production mode
 
 on:
   push:
-    branches:
-      - main
+    branches: [main]
   pull_request:
-    branches:
-      - main
+    branches: [main]
 
 jobs:
   build:
-    # This job will run on ubuntu virtual machine
     runs-on: ubuntu-latest
     steps:
-      # Setup Java environment in order to build the Android app.
-      - uses: actions/checkout@v1
-      # Setup the flutter environment.
-      - uses: subosito/flutter-action@v1
+      - uses: actions/checkout@v2
+      - uses: pnpm/action-setup@v2
         with:
-          channel: 'stable' # 'dev', 'alpha', default to: 'stable'
-          # flutter-version: '1.12.x' # you can also specify exact version of flutters
-      - run: flutter pub get
-      - run: flutter format --set-exit-if-changed .
-      - run: flutter analyze .
-      - run: flutter test
+          version: 7
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: "pnpm"
+      - name: Install the dependencies
+        run: pnpm install
+      - name: check code formatting
+        run: npx prettier --check .
+      - name: Build
+        run: pnpm run build
