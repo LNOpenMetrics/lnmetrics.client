@@ -8,7 +8,7 @@ import {
   Header,
   Container,
 } from "@cloudscape-design/components";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 
 export default function Root() {
   return (
@@ -46,7 +46,7 @@ export default function Root() {
                 </Header>
               }
             >
-              <Link to="/rfc">
+              <Link href="/rfc">
                 <Button variant="normal">Read RFCs</Button>
               </Link>
             </Container>
