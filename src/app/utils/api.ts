@@ -8,3 +8,20 @@ export class Fetch {
     return await (await fetch(url)).json();
   }
 }
+
+export class API {
+  public static async list_metrics_rfc(): Promise<Array<Map<String, String>>> {
+    let manifest = await Fetch.json_fetch(
+      "https://raw.githubusercontent.com/LNOpenMetrics/lnmetrics.rfc/main/metrics.json"
+    );
+    let metrics = manifest["metrics"];
+    console.debug(`Metrics inside the server ${metrics}`);
+    return metrics;
+  }
+
+  public static async get_metric_rfc(local_path: string): Promise<string> {
+    let basic_path = `https://raw.githubusercontent.com/LNOpenMetrics/lnmetrics.rfc/main/${local_path}`;
+    let markdown = await Fetch.raw_fetch(basic_path);
+    return markdown;
+  }
+}
