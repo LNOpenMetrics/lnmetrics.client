@@ -60,7 +60,9 @@ export default function Root() {
                 </Header>
               }
             >
-              <Button variant="normal"> Explore </Button>
+              <Link href="/analysis">
+                <Button variant="normal">Explore</Button>
+              </Link>
             </Container>
           </SpaceBetween>
         </ContentLayout>
