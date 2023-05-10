@@ -1,7 +1,8 @@
 "use client";
-import "./base.scss";
 
 import Root from "./components/root";
+
+import "./base.scss";
 
 export default function Home() {
   return (
