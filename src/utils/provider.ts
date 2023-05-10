@@ -1,5 +1,5 @@
 import { container } from "tsyringe";
-import { GraphQLClient } from "@/app/utils/client";
+import { GraphQLClient } from "@/utils/client";
 
 export default class Provider {
   private static instance?: GraphQLClient;

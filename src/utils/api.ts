@@ -1,4 +1,4 @@
-import { MetricModel, MetricsModel } from "./api_model";
+import { MetricModel, MetricsModel } from "@/model/rfc_model";
 
 export class Fetch {
   // Fetch the content and return the response as a String

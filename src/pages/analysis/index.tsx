@@ -3,7 +3,6 @@
  * a table and then analyze the metric of the node
  * choosed  by the user.
  */
-"use client";
 import "reflect-metadata";
 
 import {
@@ -14,9 +13,8 @@ import {
   TextFilter,
 } from "@cloudscape-design/components";
 
-import Provider from "@/app/utils/provider";
-
-import { Node } from "../model/localReputationMetric";
+import Provider from "@/utils/provider";
+import { Node } from "@/model/localReputationMetric";
 
 // FIXME: ServerComponents are cool, but the amazon cloudscape looks like
 // a complex and easy library to use and it should be shipped on the

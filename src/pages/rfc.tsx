@@ -1,5 +1,5 @@
-"use client";
 import { useState, useEffect } from "react";
+
 import {
   AppLayout,
   Box,
@@ -13,8 +13,9 @@ import {
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
-import { API } from "@/app/utils/api";
-import { MetricModel } from "../utils/api_model";
+
+import { API } from "@/utils/api";
+import { MetricModel } from "@/model/rfc_model";
 
 // FIXME: Add a table with all the metrics supported, and then we
 // can add a table with the link that can be done in different ways.

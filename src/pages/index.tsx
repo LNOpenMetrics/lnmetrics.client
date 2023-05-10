@@ -1,4 +1,4 @@
-"use client";
+import Link from "next/link";
 import {
   Alert,
   AppLayout,
@@ -8,9 +8,8 @@ import {
   Header,
   Container,
 } from "@cloudscape-design/components";
-import Link from "next/link";
 
-export default function Root() {
+export default function Home() {
   return (
     <AppLayout
       contentType="form"
