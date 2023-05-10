@@ -11,6 +11,7 @@ import {
 import { inject, singleton } from "tsyringe";
 
 import { Node } from "@/model/localReputationMetric";
+import * as querystring from "querystring";
 
 const defaultOptions: DefaultOptions = {
   watchQuery: {
@@ -36,7 +37,11 @@ export class GraphQLClient {
     });
   }
 
-  private async call<T>(ops: { query: string; variables: Object }): Promise<T> {
+  private async call<T>(ops: {
+    query: string;
+    variables: Object;
+    queryName: string;
+  }): Promise<T> {
     let result = await this.inner.query({
       query: gql(`${ops.query}`),
       variables: ops.variables,
@@ -44,7 +49,7 @@ export class GraphQLClient {
     if (result.error) {
       throw new Error(`${result.error}`);
     }
-    return result.data;
+    return result.data[ops.queryName];
   }
 
   public async getScoringLocalReputation<T>(args: {
@@ -54,6 +59,7 @@ export class GraphQLClient {
     return await this.call<T>({
       query: GET_LOCAL_REPUTATION_SCORE,
       variables: args,
+      queryName: "",
     });
   }
 
@@ -65,6 +71,7 @@ export class GraphQLClient {
     return await this.call<Array<Node>>({
       query: GET_LIST_NODES,
       variables: args,
+      queryName: "getNodes",
     });
   }
 
@@ -72,6 +79,7 @@ export class GraphQLClient {
     return await this.call({
       query: GET_NODE_INFO,
       variables: args,
+      queryName: "",
     });
   }
 
@@ -79,6 +87,7 @@ export class GraphQLClient {
     return await this.call({
       query: GET_RAW_LOCAL_SCORE,
       variables: args,
+      queryName: "",
     });
   }
 }
