@@ -14,17 +14,20 @@ import {
   ContentLayout,
   AppLayout,
   TextFilter,
+  Button,
 } from "@cloudscape-design/components";
 import { GetServerSideProps } from "next";
 
 import { Node } from "@/model/localReputationMetric";
 import Provider from "@/utils/provider";
+import { useRouter } from "next/navigation";
+import { router } from "next/client";
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   let nodes: Array<Node> = [];
   let error = null;
   try {
-    let client = Provider.graphql();
+    let client = Provider.getInstance().graphql();
     let mainet = await client.getListNodes({ network: "bitcoin" });
     let testnet = await client.getListNodes({ network: "testnet" });
     console.log(JSON.stringify(mainet));
@@ -58,6 +61,7 @@ function filterNodesByAlias(
 export default function Analysis({ nodes, error }: ViewProps) {
   let [alias, setAlias] = useState("");
   let [listNodes, setNodes] = useState(nodes);
+  const router = useRouter();
   if (error) {
     return <p>{error}</p>;
   }
@@ -65,9 +69,23 @@ export default function Analysis({ nodes, error }: ViewProps) {
     <AppLayout
       contentType="form"
       content={
-        <ContentLayout>
+        <ContentLayout
+          header={
+            <SpaceBetween size="m">
+              <Header
+                variant="h1"
+                description="All the lightning node that are sharing the metrics"
+              >
+                Lightning Network Nodes
+              </Header>
+            </SpaceBetween>
+          }
+        >
           <SpaceBetween size="xxl">
             <Table
+              onRowClick={({ detail }) =>
+                Provider.getInstance().setModel("node", detail.item)
+              }
               stickyHeader={true}
               columnDefinitions={[
                 {
@@ -86,14 +104,24 @@ export default function Analysis({ nodes, error }: ViewProps) {
                   sortingField: "network",
                   cell: (e) => e.network,
                 },
+                {
+                  id: "metrics",
+                  header: "Analysis",
+                  cell: (node) => (
+                    <Button
+                      variant="normal"
+                      onClick={() => {
+                        Provider.getInstance().setModel("node", node);
+                        router.push("/analysis/node");
+                      }}
+                    >
+                      Full Analysis
+                    </Button>
+                  ),
+                },
               ]}
               items={listNodes}
               loadingText="Fetch nodes"
-              visibleColumns={[
-                "node_alias",
-                "node_implementation",
-                "node_network",
-              ]}
               empty={
                 <Box textAlign="center" color="inherit">
                   <b>No resources</b>
