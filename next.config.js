@@ -1,13 +1,19 @@
-/** @type {import('next').NextConfig} */
-const path = require("path");
+const withTM = require("next-transpile-modules")([
+  "@cloudscape-design/components",
+]);
 
+/** @type {import('next').NextConfig} */
 const nextConfig = {
-  experimental: {
-    appDir: true,
-  },
-  sassOptions: {
-    includePaths: [path.join(__dirname, "styles")],
-  },
+  reactStrictMode: true,
+  swcMinify: true,
 };
 
-module.exports = nextConfig;
+const buildConfig = (_phase) => {
+  const plugins = [withTM];
+  const config = plugins.reduce((acc, next) => next(acc), {
+    ...nextConfig,
+  });
+  return config;
+};
+
+module.exports = buildConfig();

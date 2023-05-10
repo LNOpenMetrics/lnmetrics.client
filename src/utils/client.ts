@@ -1,7 +1,6 @@
 /**
  * Client implementations to work with the application
  */
-import { inject, singleton } from "tsyringe";
 import {
   ApolloClient,
   InMemoryCache,
@@ -9,8 +8,9 @@ import {
   DefaultOptions,
   NormalizedCacheObject,
 } from "@apollo/client";
+import { inject, singleton } from "tsyringe";
 
-import { Node } from "../model/localReputationMetric";
+import { Node } from "@/model/localReputationMetric";
 
 const defaultOptions: DefaultOptions = {
   watchQuery: {
@@ -23,7 +23,6 @@ const defaultOptions: DefaultOptions = {
   },
 };
 
-// @ts-ignore
 @singleton()
 export class GraphQLClient {
   private inner: ApolloClient<NormalizedCacheObject>;
