@@ -1,4 +1,13 @@
 import { MetricModel, MetricsModel } from "@/model/rfc_model";
+import { Fetcher } from "swr";
+
+export async function fetcher<T>(
+  input: RequestInfo,
+  init?: RequestInit
+): Promise<T> {
+  const res = await fetch(input, init);
+  return res.json();
+}
 
 export class Fetch {
   // Fetch the content and return the response as a String
@@ -17,7 +26,7 @@ export class API {
       "https://raw.githubusercontent.com/LNOpenMetrics/lnmetrics.rfc/main/metrics.json"
     );
     let metrics = manifest.metrics;
-    console.debug(`Metrics inside the server ${metrics}`);
+    console.debug(`Metrics inside the server ${JSON.stringify(metrics)}`);
     return metrics;
   }
 

@@ -13,19 +13,44 @@ import {
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
+import useSWR from "swr";
 
 import { API } from "@/utils/api";
 import { MetricModel } from "@/model/rfc_model";
+import { fetcher } from "@/utils/api";
+import { GetServerSideProps } from "next";
+import { Node } from "@/model/localReputationMetric";
+import Provider from "@/utils/provider";
 
-// FIXME: Add a table with all the metrics supported, and then we
-// can add a table with the link that can be done in different ways.
-export default function RfcComponent() {
-  const [metrics, setMetrics] = useState<Array<MetricModel>>([]);
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  let nodes: Array<Node> = [];
+  let error = null;
+  try {
+    let rfcMetrics = await API.list_metrics_rfc();
+    return {
+      props: {
+        metrics: rfcMetrics,
+        error: null,
+      },
+    };
+  } catch (e) {
+    console.error(`${e}`);
+    return {
+      props: {
+        nodes: null,
+        error: e!.toString(),
+      },
+    };
+  }
+};
+
+type ViewProps = {
+  metrics: Array<MetricModel>;
+  error?: string;
+};
+
+export default function RfcComponent({ metrics, error }: ViewProps) {
   const [markdown, setMarkdown] = useState<string | undefined>(undefined);
-  useEffect(() => {
-    API.list_metrics_rfc().then((result) => setMetrics(result));
-  }, []);
-
   return (
     <AppLayout
       contentType="form"
