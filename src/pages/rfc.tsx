@@ -55,7 +55,19 @@ export default function RfcComponent({ metrics, error }: ViewProps) {
     <AppLayout
       contentType="form"
       content={
-        <ContentLayout>
+        <ContentLayout
+          header={
+            <SpaceBetween size="m">
+              <Header
+                variant="h1"
+                description="The lnmetrics project aims to develop a collection of tools for running Lightning Network nodes with daily activity.
+                    This project involves defining and collecting Lightning Network metrics through a data-driven analysis."
+              >
+                Lightning Network Metrics Specification (RFC)
+              </Header>
+            </SpaceBetween>
+          }
+        >
           <SpaceBetween size="xxl">
             <Table
               columnDefinitions={[
