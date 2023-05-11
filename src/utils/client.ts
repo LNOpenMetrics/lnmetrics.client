@@ -10,7 +10,7 @@ import {
 } from "@apollo/client";
 import { inject, singleton } from "tsyringe";
 
-import { Node } from "@/model/localReputationMetric";
+import { LocalReputation, Node } from "@/model/localReputationMetric";
 import * as querystring from "querystring";
 
 const defaultOptions: DefaultOptions = {
@@ -52,14 +52,29 @@ export class GraphQLClient {
     return result.data[ops.queryName];
   }
 
-  public async getScoringLocalReputation<T>(args: {
+  public async getLocalScoreForNodesByNetwork(args: {
+    network: string;
+  }): Promise<{ [key: string]: LocalReputation }> {
+    let reputationByNetwork: { [key: string]: LocalReputation } = {};
+    let nodes = await this.getListNodes(args);
+    for (let node of nodes) {
+      let reputation = await this.getScoringLocalReputation({
+        network: args.network,
+        node_id: node.node_id,
+      });
+      reputationByNetwork[node.node_id] = reputation;
+    }
+    return reputationByNetwork;
+  }
+
+  public async getScoringLocalReputation(args: {
     node_id: string;
     network: string;
-  }): Promise<T> {
-    return await this.call<T>({
+  }): Promise<LocalReputation> {
+    return await this.call<LocalReputation>({
       query: GET_LOCAL_REPUTATION_SCORE,
       variables: args,
-      queryName: "",
+      queryName: "getMetricOneResult",
     });
   }
 
@@ -92,7 +107,84 @@ export class GraphQLClient {
   }
 }
 
-export const GET_LOCAL_REPUTATION_SCORE: string = "";
+export const GET_LOCAL_REPUTATION_SCORE: string = `
+query LocalScoreOutput($network: String!, $node_id: String!) {
+  getMetricOneResult(network: $network, node_id: $node_id) {
+    age
+    last_update
+    version
+    up_time {
+      one_day
+      ten_days
+      thirty_days
+      six_months
+    }
+    forwards_rating {
+      one_day {
+        success
+        failure
+        local_failure
+      }
+      ten_days {
+        success
+        failure
+        local_failure
+      }
+      thirty_days {
+        success
+        failure
+        local_failure
+      }
+      six_months {
+        success
+        failure
+        local_failure
+      }
+      full {
+        success
+        failure
+        local_failure
+      }
+    }
+    channels_info {
+      node_id
+      alias
+      channel_id
+      capacity
+      direction
+      up_time {
+        one_day
+        ten_days
+        thirty_days
+        six_months
+        full
+      }
+      forwards_rating {
+      one_day {
+        success
+        failure
+        local_failure
+      }
+        thirty_days {
+        success
+        failure
+        local_failure
+      }
+        six_months {
+        success
+        failure
+        local_failure
+      }
+      full {
+          success
+          failure
+          local_failure
+        }
+      }
+    }
+  }
+}
+`;
 export const GET_LIST_NODES: string = `
 query GetNodes($network: String!){
   getNodes(network: $network) {
