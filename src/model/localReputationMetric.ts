@@ -22,3 +22,49 @@ export type Node = {
   last_update: number;
   timezone: string;
 };
+
+export type ForwardsRating = {
+  success: number;
+  failure: number;
+  local_failure: number;
+};
+
+export type Uptime = {
+  one_day: number;
+  ten_days: number;
+  thirty_days: number;
+  six_months: number;
+  full: number;
+};
+
+export type Limit = {
+  min: number;
+  max: number;
+};
+
+export type ChannelInfo = {
+  last_update: number;
+  node_id: string;
+  direction: string;
+  limits: Limit;
+  forwards_rating: {
+    one_day: ForwardsRating;
+    ten_days: ForwardsRating;
+    thirty_days: ForwardsRating;
+    six_months: ForwardsRating;
+    full: ForwardsRating;
+  };
+  up_time: Uptime;
+};
+
+export type AllForwards = {
+  ten_days: ForwardsRating;
+  thirty_days: ForwardsRating;
+  up_time: Uptime;
+};
+
+export type LocalReputation = {
+  last_update: number;
+  forwards_rating: AllForwards;
+  channels_info: Array<ChannelInfo>;
+};

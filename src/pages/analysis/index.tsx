@@ -21,7 +21,6 @@ import { GetServerSideProps } from "next";
 import { Node } from "@/model/localReputationMetric";
 import Provider from "@/utils/provider";
 import { useRouter } from "next/navigation";
-import { router } from "next/client";
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   let nodes: Array<Node> = [];

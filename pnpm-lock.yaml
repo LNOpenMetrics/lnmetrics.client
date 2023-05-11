@@ -34,6 +34,18 @@ dependencies:
   next:
     specifier: 13.4.1
     version: 13.4.1(@babel/core@7.21.8)(react-dom@18.2.0)(react@18.2.0)
+  ngraph.forcelayout:
+    specifier: ^3.3.1
+    version: 3.3.1
+  ngraph.graph:
+    specifier: ^20.0.1
+    version: 20.0.1
+  ngraph.pixel:
+    specifier: ^2.4.1
+    version: 2.4.1
+  ngraph.pixi:
+    specifier: ^0.0.5
+    version: 0.0.5
   postcss:
     specifier: 8.4.23
     version: 8.4.23
@@ -1136,6 +1148,10 @@ packages:
     engines: {node: '>=8'}
     dev: false
 
+  /bit-twiddle@1.0.2:
+    resolution: {integrity: sha512-B9UhK0DKFZhoTFcfvAzhqsjStvGJp9vYWf3+6SNTtdSQnvIgfkHbgHrg/e4+TH71N2GDu8tpmCVoyfrL1d7ntA==}
+    dev: false
+
   /bplist-parser@0.2.0:
     resolution: {integrity: sha512-z0M+byMThzQmD9NILRniCUXYsYpjwnlO8N5uCFaCqIOpqRsJCrQL9NK3JsD67CN5a08nF5oIL2bD6loTdHOuKw==}
     engines: {node: '>= 5.10.0'}
@@ -1471,8 +1487,16 @@ packages:
       csstype: 3.1.2
     dev: false
 
+  /earcut@2.2.4:
+    resolution: {integrity: sha512-/pjZsA1b4RPHbeWZQn66SWS8nZZWLQQ23oE3Eam7aroEFGEvwKAsJfZ9ytiEMycfzXWpca4FA9QIOehf7PocBQ==}
+    dev: false
+
   /electron-to-chromium@1.4.388:
     resolution: {integrity: sha512-xZ0y4zjWZgp65okzwwt00f2rYibkFPHUv9qBz+Vzn8cB9UXIo9Zc6Dw81LJYhhNt0G/vR1OJEfStZ49NKl0YxQ==}
+
+  /element-class@0.2.2:
+    resolution: {integrity: sha512-e4tkRAFtQkGiZB8fzxAFdjEbx5zajMb1GpiRwKs3lhOLxQcvdOIG7XlERT1sTX3/ulIUGZrgL02YZ0cRNC5OLQ==}
+    dev: false
 
   /emoji-regex@9.2.2:
     resolution: {integrity: sha512-L18DaJsXSUk2+42pv8mLs5jJT2hqFkFE4j21wOmgbUqsZ2hL72NsUU785g9RXgo3s0ZNgVl42TiHp3ZtOv/Vyg==}
@@ -1854,6 +1878,10 @@ packages:
   /esutils@2.0.3:
     resolution: {integrity: sha512-kVscqXk4OCp68SZ0dkgEKVi6/8ij300KBWTJq32P/dYeWTSwK41WyTxalN1eRmA5Z9UU/LX9D7FWSmV9SAYx6g==}
     engines: {node: '>=0.10.0'}
+    dev: false
+
+  /eventemitter3@2.0.3:
+    resolution: {integrity: sha512-jLN68Dx5kyFHaePoXWPsCGW5qdyZQtLYHkxkg02/Mz6g0kYpDx4FyP6XfArhQdlOC4b8Mv+EMxPo/8La7Tzghg==}
     dev: false
 
   /execa@5.1.1:
@@ -2304,6 +2332,10 @@ packages:
     resolution: {integrity: sha512-7NXolsK4CAS5+xvdj5OMMbI962hU/wvwoxk+LWR9Ek9bVtyuuYScDN6eS0rUm6TxApFpw7CX1o4uJzcd4AyD3Q==}
     dev: false
 
+  /insert-css@0.2.0:
+    resolution: {integrity: sha512-tXSEsS2BJfEdtBuKzqfbbOijbWQC+y0i5pGd4OXNBauhWZ5lLNs7nb03tyONVuvwu6RXyQqWwqoRJV3jKR7+ag==}
+    dev: false
+
   /internal-slot@1.0.5:
     resolution: {integrity: sha512-Y+R5hJrzs52QCG2laLn4udYVnxsfny9CpOhNhUvk/SSSVyF6T27FzRbF0sroPidSu3X8oEAkOn2K804mjpt6UQ==}
     engines: {node: '>= 0.4'}
@@ -2528,6 +2560,10 @@ packages:
 
   /isexe@2.0.0:
     resolution: {integrity: sha512-RHxMLp9lnKHGHRng9QFhRCMbYAcVpn69smSGcq3f36xjgVVWThj4qqLbTLlq7Ssj8B+fIQ1EuCEGI2lKsyQeIw==}
+    dev: false
+
+  /ismobilejs@0.5.2:
+    resolution: {integrity: sha512-ta9UdV60xVZk/ZafFtSFslQaE76SvNkcs1r73d2PVR21zVzx9xuYv9tNe4MxA1NN7WoeCc2RjGot3Bz1eHDx3Q==}
     dev: false
 
   /jiti@1.18.2:
@@ -3058,6 +3094,10 @@ packages:
     engines: {node: '>=12'}
     dev: false
 
+  /mini-signals@1.2.0:
+    resolution: {integrity: sha512-alffqMkGCjjTSwvYMVLx+7QeJ6sTuxbXqBkP21my4iWU5+QpTQAJt3h7htA1OKm9F3BpMM0vnu72QIoiJakrLA==}
+    dev: false
+
   /minimatch@3.1.2:
     resolution: {integrity: sha512-J7p63hRiAjw1NDEww1W7i37+ByIrOWO5XQQAzZ3VOcL0PNybwpfmV/N05zFAzwQ9USyEcX6t3UO+K5aqBQOIHw==}
     dependencies:
@@ -3159,6 +3199,147 @@ packages:
     transitivePeerDependencies:
       - '@babel/core'
       - babel-plugin-macros
+    dev: false
+
+  /ngraph.events@0.0.3:
+    resolution: {integrity: sha512-UrewofHOFk/05otBm9GD4DA3PTEY/yaElhCclmGC4IcmAYaSDRrC3lENQxJ00AzeBnz1GY2xH7Ct7AfIdhsdWA==}
+    dev: false
+
+  /ngraph.events@1.2.2:
+    resolution: {integrity: sha512-JsUbEOzANskax+WSYiAPETemLWYXmixuPAlmZmhIbIj6FH/WDgEGCGnRwUQBK0GjOnVm8Ui+e5IJ+5VZ4e32eQ==}
+    dev: false
+
+  /ngraph.expose@0.0.0:
+    resolution: {integrity: sha512-Hr88MuhgoSLVGf2aaaXcKl22Rn95duWsjRcoeJMP9PtFmYHGFw/3ctDqBf5phnIyktm0P/Quxs5EGg6xgJcZAQ==}
+    dev: false
+
+  /ngraph.forcelayout3d@0.0.15:
+    resolution: {integrity: sha512-d6cYhknnK5OhfpmZL89nySje8QzqESTXPc/yz7Clz2wuSGSn8k+ufm+w/78q53kkQzkyNgJqM7aU4g5e+RuERQ==}
+    dependencies:
+      ngraph.expose: 0.0.0
+      ngraph.forcelayout: 0.0.22
+      ngraph.merge: 0.0.1
+      ngraph.physics.primitives: 0.0.7
+      ngraph.quadtreebh3d: 0.0.3
+      ngraph.random: 0.0.1
+    dev: false
+
+  /ngraph.forcelayout@0.0.22:
+    resolution: {integrity: sha512-eGjonxfqLa9e4BfFGmgWeVLLHkolUzOgKtFsQMgwpCpGtXUQwfO+iz5kRn8scRgyh0iaPNPrPLtKepA2Ojpe5Q==}
+    dependencies:
+      ngraph.events: 0.0.3
+      ngraph.physics.simulator: 0.0.12
+    dev: false
+
+  /ngraph.forcelayout@0.1.2:
+    resolution: {integrity: sha512-N6W/KPtxnpprpm1tg0V2ubahD9Q0nJvlAKh6QkUuZvOBK6OsLAlfhUwn+3iDt3ZhgCuhyebRWZYt80Yrlqkzjw==}
+    dependencies:
+      ngraph.events: 0.0.3
+      ngraph.physics.simulator: 0.1.1
+    dev: false
+
+  /ngraph.forcelayout@3.3.1:
+    resolution: {integrity: sha512-MKBuEh1wujyQHFTW57y5vd/uuEOK0XfXYxm3lC7kktjJLRdt/KEKEknyOlc6tjXflqBKEuYBBcu7Ax5VY+S6aw==}
+    dependencies:
+      ngraph.events: 1.2.2
+      ngraph.merge: 1.0.0
+      ngraph.random: 1.1.0
+    dev: false
+
+  /ngraph.graph@20.0.1:
+    resolution: {integrity: sha512-VFsQ+EMkT+7lcJO1QP8Ik3w64WbHJl27Q53EO9hiFU9CRyxJ8HfcXtfWz/U8okuoYKDctbciL6pX3vG5dt1rYA==}
+    dependencies:
+      ngraph.events: 1.2.2
+    dev: false
+
+  /ngraph.merge@0.0.1:
+    resolution: {integrity: sha512-iXchI5xMjYzA96mee//O7I7gtd4cCakWaSTu11aMTxRDbvBK2qpDDytYg58jO3usAUkjFxBdy1gxYppKmBDuRQ==}
+    dev: false
+
+  /ngraph.merge@1.0.0:
+    resolution: {integrity: sha512-5J8YjGITUJeapsomtTALYsw7rFveYkM+lBj3QiYZ79EymQcuri65Nw3knQtFxQBU1r5iOaVRXrSwMENUPK62Vg==}
+    dev: false
+
+  /ngraph.physics.primitives@0.0.7:
+    resolution: {integrity: sha512-7jPm14fYcuJ9kytOVNOKxFy6r/Uu9Dnj++uT3iR9XkBcsBahn2xcYJkV6vF1bIb1fQ5XrDCRjRIOcMwEum6jwQ==}
+    dev: false
+
+  /ngraph.physics.simulator@0.0.11:
+    resolution: {integrity: sha512-h+WjVDAdqiQ05Y159Zer8hznhN8zs9sJiMXlME8cGsFsSG63VAdbuNvpxNpcwa38Kw2CsLzNqt04AEisc722hQ==}
+    dependencies:
+      ngraph.expose: 0.0.0
+      ngraph.merge: 0.0.1
+      ngraph.physics.primitives: 0.0.7
+      ngraph.quadtreebh: 0.0.3
+      ngraph.random: 0.0.1
+    dev: false
+
+  /ngraph.physics.simulator@0.0.12:
+    resolution: {integrity: sha512-c5THBS9fbzfUsFP39lKrWAt4UdNUqdKtahRE+SmB1uuv2B9aglyd0yAOtNTumrzGIG7vNy8isAw0Qd4Qztg7BQ==}
+    dependencies:
+      ngraph.events: 0.0.3
+      ngraph.expose: 0.0.0
+      ngraph.merge: 0.0.1
+      ngraph.physics.primitives: 0.0.7
+      ngraph.quadtreebh: 0.0.3
+      ngraph.random: 0.0.1
+    dev: false
+
+  /ngraph.physics.simulator@0.1.1:
+    resolution: {integrity: sha512-2UQE4ZK9MUvwiwrfSY8yQwpwtR44Fx6mbiNerKk/4Hrbu7I9b1EB0yFnUlYTTIj8IMpwOoXeSVR6c4VrBAUkfQ==}
+    dependencies:
+      ngraph.events: 0.0.3
+      ngraph.expose: 0.0.0
+      ngraph.merge: 0.0.1
+      ngraph.physics.primitives: 0.0.7
+      ngraph.quadtreebh: 0.0.4
+      ngraph.random: 0.0.1
+    dev: false
+
+  /ngraph.pixel@2.4.1:
+    resolution: {integrity: sha512-H4hqyEVMhGZ6hGL30pXKZ+RpZw8NQaLa4hGGj3UutokUp3yfvTLrToOq+/W09jK/Sn6DzimYPuLAn+OuIfx4Zw==}
+    dependencies:
+      element-class: 0.2.2
+      insert-css: 0.2.0
+      ngraph.events: 0.0.3
+      pixel.layout: 0.1.2
+      three: 0.73.2
+      three.fly: 0.1.6
+    dev: false
+
+  /ngraph.pixi@0.0.5:
+    resolution: {integrity: sha512-vNTHLYSkzWeO6K3Y0td0jZ317PRKuJnSvNp+e/VpLYsNEJv9Q5f16W+LwkwmbMzMWJ5sWPx01foxpgojJ9gGZA==}
+    dependencies:
+      ngraph.forcelayout: 0.1.2
+      ngraph.merge: 0.0.1
+      ngraph.physics.simulator: 0.0.11
+      pixi.js: 4.8.9
+    dev: false
+
+  /ngraph.quadtreebh3d@0.0.3:
+    resolution: {integrity: sha512-DIRiviYWity+/yiZpRRs95V7gShtXnxDifQbdLffAi4PdNWnprFarcXuk+q/YbTakH4cWcOXZo7mQyUTO9odZg==}
+    dependencies:
+      ngraph.random: 0.0.1
+    dev: false
+
+  /ngraph.quadtreebh@0.0.3:
+    resolution: {integrity: sha512-vnmXcwnaourj6L4ssCwtHV5ObybvuyPkPVEFZI7nW5T6Tmt+t2dFA3ljym6MlSEcrayOgD7S2Ac+2YDN1DRZ3w==}
+    dependencies:
+      ngraph.random: 0.0.1
+    dev: false
+
+  /ngraph.quadtreebh@0.0.4:
+    resolution: {integrity: sha512-xTIkWGXt5Ajnoq9VOr0xDOI9ZL+q4sPhD0Z7vxvn4MCa+l0wf43rg0C7qv0t+RIOgbQBAp0xDpn568hpXAckJA==}
+    dependencies:
+      ngraph.random: 0.0.1
+    dev: false
+
+  /ngraph.random@0.0.1:
+    resolution: {integrity: sha512-QPKU7ChXF/VrvMQxVo9aWcvXCXp98VfL4nKUteTW/olDqeUqQ61t7m+jvFb8Dj7kKvlKlnsbDA1aWLJGmm17XA==}
+    dev: false
+
+  /ngraph.random@1.1.0:
+    resolution: {integrity: sha512-h25UdUN/g8U7y29TzQtRm/GvGr70lK37yQPvPKXXuVfs7gCm82WipYFZcksQfeKumtOemAzBIcT7lzzyK/edLw==}
     dev: false
 
   /node-releases@2.0.10:
@@ -3329,6 +3510,11 @@ packages:
       callsites: 3.1.0
     dev: false
 
+  /parse-uri@1.0.7:
+    resolution: {integrity: sha512-eWuZCMKNlVkXrEoANdXxbmqhu2SQO9jUMCSpdbJDObin0JxISn6e400EWsSRbr/czdKvWKkhZnMKEGUwf/Plmg==}
+    engines: {node: '>= 0.10'}
+    dev: false
+
   /parse5@6.0.1:
     resolution: {integrity: sha512-Ofn/CTFzRGTTxwpNEs9PP93gXShHcTq255nzRYSKe8AkVpZY7e1fpmTfOyoIvjP5HG7Z2ZM7VS9PPhQGW2pOpw==}
     dev: false
@@ -3378,6 +3564,30 @@ packages:
   /pirates@4.0.5:
     resolution: {integrity: sha512-8V9+HQPupnaXMA23c5hvl69zXvTwTzyAYasnkb0Tts4XvO4CliqONMOnvlq26rkhLC3nWDFBJf73LU1e1VZLaQ==}
     engines: {node: '>= 6'}
+    dev: false
+
+  /pixel.layout@0.1.2:
+    resolution: {integrity: sha512-GwEZPvzOgZ3adzeGmuWGebB0t7PklsGQF9zYYOzL2W6bPbG6dwDgY7A7yLTO6OLenl2ohxdbdYyqEkDmRuRXfw==}
+    dependencies:
+      ngraph.events: 0.0.3
+      ngraph.forcelayout3d: 0.0.15
+    dev: false
+
+  /pixi-gl-core@1.1.4:
+    resolution: {integrity: sha512-dGLwg7664yASpT1insVUexNTMVEtvPZh/eDoXu8QUBoq2CY1Fc8axNwR+qbS1aJ8vj6y/TfWiOEaOSyNH41txw==}
+    dev: false
+
+  /pixi.js@4.8.9:
+    resolution: {integrity: sha512-YcepG5/bXLAVTSTXaMIU9NeSzwyPq/oMu2oQi6L6iE5giwng02ixVCKgc6/eMv3zl2Ho+teSOLC8R5Wp3jBvLA==}
+    dependencies:
+      bit-twiddle: 1.0.2
+      earcut: 2.2.4
+      eventemitter3: 2.0.3
+      ismobilejs: 0.5.2
+      object-assign: 4.1.1
+      pixi-gl-core: 1.1.4
+      remove-array-items: 1.1.1
+      resource-loader: 2.2.4
     dev: false
 
   /postcss-import@15.1.0(postcss@8.4.23):
@@ -3662,6 +3872,10 @@ packages:
       unified: 10.1.2
     dev: false
 
+  /remove-array-items@1.1.1:
+    resolution: {integrity: sha512-MXW/jtHyl5F1PZI7NbpS8SOtympdLuF20aoWJT5lELR1p/HJDd5nqW8Eu9uLh/hCRY3FgvrIT5AwDCgBODklcA==}
+    dev: false
+
   /resolve-from@4.0.0:
     resolution: {integrity: sha512-pb/MYmXstAkysRFx8piNI1tGFNQIFA3vkE3Gq4EuA1dF6gHp/+vgZqsCGJapvy8N3Q+4o7FwvquPJcnZ7RYy4g==}
     engines: {node: '>=4'}
@@ -3683,6 +3897,13 @@ packages:
       is-core-module: 2.12.0
       path-parse: 1.0.7
       supports-preserve-symlinks-flag: 1.0.0
+    dev: false
+
+  /resource-loader@2.2.4:
+    resolution: {integrity: sha512-MrY0bEJN26us3h4bzJUSP0n4tFEb79lCpYBavtLjSezWCcXZMgxhSgvC9LxueuqpcxG+qPjhwFu5SQAcUNacdA==}
+    dependencies:
+      mini-signals: 1.2.0
+      parse-uri: 1.0.7
     dev: false
 
   /response-iterator@0.2.6:
@@ -3997,6 +4218,16 @@ packages:
     resolution: {integrity: sha512-RVZSIV5IG10Hk3enotrhvz0T9em6cyHBLkH/YAZuKqd8hRkKhSfCGIcP2KUY0EPxndzANBmNllzWPwak+bheSw==}
     dependencies:
       any-promise: 1.3.0
+    dev: false
+
+  /three.fly@0.1.6:
+    resolution: {integrity: sha512-iduRTbHyb2WVas4FOyXj8W/wtjfyu0DtFeSMIL7akm3Bfa8+QubDdlsDFTf+382ATzSbA3gKZGo091ZonBt87w==}
+    dependencies:
+      ngraph.events: 0.0.3
+    dev: false
+
+  /three@0.73.2:
+    resolution: {integrity: sha512-TC2H54TAnLwLwuMz5mUNN60BuK5MvLI1OgF2X1PdxnVehgZ7p9sNbaHpJEj3hi2T8WadlIUE8d/96oe3XlpPAw==}
     dev: false
 
   /titleize@3.0.0:

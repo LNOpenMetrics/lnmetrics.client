@@ -63,6 +63,20 @@ export default function Home() {
                 <Button variant="normal">Explore</Button>
               </Link>
             </Container>
+            <Container
+              header={
+                <Header
+                  variant="h2"
+                  description="Display the graph graph to show how the node that are sharing the metrics are connected."
+                >
+                  Lightning Network Metrics Graph
+                </Header>
+              }
+            >
+              <Link href="/graph">
+                <Button variant="normal">Show</Button>
+              </Link>
+            </Container>
           </SpaceBetween>
         </ContentLayout>
       }
