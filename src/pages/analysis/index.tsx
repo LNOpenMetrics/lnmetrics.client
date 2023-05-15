@@ -15,6 +15,7 @@ import {
   AppLayout,
   TextFilter,
   Button,
+  Badge,
 } from "@cloudscape-design/components";
 import { GetServerSideProps } from "next";
 
@@ -29,7 +30,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     let client = Provider.getInstance().graphql();
     let mainet = await client.getListNodes({ network: "bitcoin" });
     let testnet = await client.getListNodes({ network: "testnet" });
-    console.log(JSON.stringify(mainet));
     nodes = mainet.concat(testnet);
   } catch (e) {
     console.error(`error: ${e}`);
@@ -101,7 +101,7 @@ export default function Analysis({ nodes, error }: ViewProps) {
                   id: "node_network",
                   header: "Node Network",
                   sortingField: "network",
-                  cell: (e) => e.network,
+                  cell: (e) => <Badge> {e.network.toUpperCase()} </Badge>,
                 },
                 {
                   id: "metrics",
@@ -111,7 +111,7 @@ export default function Analysis({ nodes, error }: ViewProps) {
                       variant="normal"
                       onClick={() => {
                         Provider.getInstance().setModel("node", node);
-                        router.push("/analysis/node");
+                        router.push(`/analysis/node/${node.node_id}`);
                       }}
                     >
                       Full Analysis
