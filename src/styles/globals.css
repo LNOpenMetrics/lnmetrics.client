@@ -10,3 +10,8 @@
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
+.content-center {
+  display: flex !important;
+  justify-content: center !important;
+}

@@ -13,14 +13,11 @@ import {
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
-import useSWR from "swr";
 
 import { API } from "@/utils/api";
 import { MetricModel } from "@/model/rfc_model";
-import { fetcher } from "@/utils/api";
 import { GetServerSideProps } from "next";
 import { Node } from "@/model/localReputationMetric";
-import Provider from "@/utils/provider";
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   let nodes: Array<Node> = [];

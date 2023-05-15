@@ -15,6 +15,7 @@ import {
   AppLayout,
   TextFilter,
   Button,
+  Badge,
 } from "@cloudscape-design/components";
 import { GetServerSideProps } from "next";
 
@@ -101,7 +102,7 @@ export default function Analysis({ nodes, error }: ViewProps) {
                   id: "node_network",
                   header: "Node Network",
                   sortingField: "network",
-                  cell: (e) => e.network,
+                  cell: (e) => <Badge> {e.network.toUpperCase()} </Badge>,
                 },
                 {
                   id: "metrics",

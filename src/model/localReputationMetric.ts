@@ -5,16 +5,18 @@
  * https://github.com/LNOpenMetrics/lnmetrics.rfc
  */
 
+export type Address = {
+  type: string;
+  host: string;
+  port: number;
+};
+
 export type Node = {
   node_id: string;
   color: string;
   alias: string;
   network: string;
-  address: {
-    type: string;
-    host: string;
-    port: number;
-  };
+  address: Array<Address>;
   node_info: {
     implementation: string;
     version: string;

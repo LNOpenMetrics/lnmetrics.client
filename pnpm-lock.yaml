@@ -4,6 +4,9 @@ dependencies:
   '@apollo/client':
     specifier: ^3.7.14
     version: 3.7.14(graphql@16.6.0)(react-dom@18.2.0)(react@18.2.0)
+  '@cloudscape-design/board-components':
+    specifier: ^3.0.13
+    version: 3.0.13(@cloudscape-design/components@3.0.277)(@cloudscape-design/design-tokens@3.0.12)(react-dom@18.2.0)(react@18.2.0)
   '@cloudscape-design/components':
     specifier: ^3.0.277
     version: 3.0.277(@types/react@18.2.6)(react-dom@18.2.0)(react@18.2.0)
@@ -49,6 +52,9 @@ dependencies:
   postcss:
     specifier: 8.4.23
     version: 8.4.23
+  qrcode.react:
+    specifier: ^3.1.0
+    version: 3.1.0(react@18.2.0)
   react:
     specifier: 18.2.0
     version: 18.2.0
@@ -437,6 +443,24 @@ packages:
       '@babel/helper-validator-identifier': 7.19.1
       to-fast-properties: 2.0.0
 
+  /@cloudscape-design/board-components@3.0.13(@cloudscape-design/components@3.0.277)(@cloudscape-design/design-tokens@3.0.12)(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-5VSX3GnvhSh5Vs8WlodxLjR6a0UZEqx/+/esp0bhnpfCUKOYLoUWLvoeh3JmZBGcGfRS8NSsY9i9v8nu0SC5gg==}
+    peerDependencies:
+      '@cloudscape-design/components': ^3
+      '@cloudscape-design/design-tokens': ^3
+      react: ^18.2.0
+      react-dom: ^18.2.0
+    dependencies:
+      '@cloudscape-design/component-toolkit': 1.0.0-beta.14
+      '@cloudscape-design/components': 3.0.277(@types/react@18.2.6)(react-dom@18.2.0)(react@18.2.0)
+      '@cloudscape-design/design-tokens': 3.0.12
+      '@cloudscape-design/test-utils-core': 1.0.10
+      '@dnd-kit/utilities': 3.2.1(react@18.2.0)
+      clsx: 1.2.1
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+    dev: false
+
   /@cloudscape-design/collection-hooks@1.0.21(react@18.2.0):
     resolution: {integrity: sha512-H2svaXsqHK/XX2CAgU0hxIqiiAh3rvlG490DpNHGbQ8ouXCURc8Hz0Hws+DbZ/etEczpyW44uBBO6xfIXE41iQ==}
     peerDependencies:
@@ -483,6 +507,10 @@ packages:
       weekstart: 1.1.0
     transitivePeerDependencies:
       - '@types/react'
+    dev: false
+
+  /@cloudscape-design/design-tokens@3.0.12:
+    resolution: {integrity: sha512-mmI1u5ahUaXvwqhrH67b6cWtX3wSGBP3kmqCjmHiXgRydlPAHYkrYFEASQjNhesqhy3CxcyjYQJf9dvJ3UGucw==}
     dev: false
 
   /@cloudscape-design/global-styles@1.0.9:
@@ -3689,6 +3717,14 @@ packages:
   /punycode@2.3.0:
     resolution: {integrity: sha512-rRV+zQD8tVFys26lAGR9WUuS4iUAngJScM+ZRSKtvl5tKeZ2t5bvdNFdNHBW9FWR4guGHlgmsZ1G7BSm2wTbuA==}
     engines: {node: '>=6'}
+    dev: false
+
+  /qrcode.react@3.1.0(react@18.2.0):
+    resolution: {integrity: sha512-oyF+Urr3oAMUG/OiOuONL3HXM+53wvuH3mtIWQrYmsXoAq0DkvZp2RYUWFSMFtbdOpuS++9v+WAkzNVkMlNW6Q==}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0
+    dependencies:
+      react: 18.2.0
     dev: false
 
   /queue-microtask@1.2.3:
