@@ -30,7 +30,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     let client = Provider.getInstance().graphql();
     let mainet = await client.getListNodes({ network: "bitcoin" });
     let testnet = await client.getListNodes({ network: "testnet" });
-    console.log(JSON.stringify(mainet));
     nodes = mainet.concat(testnet);
   } catch (e) {
     console.error(`error: ${e}`);

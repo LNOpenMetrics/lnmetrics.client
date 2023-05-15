@@ -33,11 +33,11 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   let node_id: string = context.params!.node_id!.toString();
   let client = Provider.getInstance().graphql();
   try {
+    // FIXME: TODO with the node id query the server by asking the node info by id
     reputation = await client.getScoringLocalReputation({
       network: "bitcoin",
       node_id: node_id,
     });
-    console.log(JSON.stringify(reputation));
   } catch (e) {
     console.error(`error: ${e}`);
     error = `${e}`;
@@ -57,6 +57,7 @@ type ViewProps = {
 
 export default function NodeAnalysis({ local_reputation, error }: ViewProps) {
   const route = useRouter();
+  // FIXME: use the server props to get the node info from the server without use the provider
   let [node, setNode] = useState<Node | undefined>(undefined);
   useEffect(() => {
     try {
@@ -70,7 +71,7 @@ export default function NodeAnalysis({ local_reputation, error }: ViewProps) {
   if (!node) {
     return <p>Loading ..</p>;
   }
-  let time = new Date(node.last_update * 1000).toLocaleTimeString("en-US");
+  let time = new Date(node.last_update * 1000).toLocaleString("en-US");
   return (
     <AppLayout
       contentType="form"
@@ -78,7 +79,21 @@ export default function NodeAnalysis({ local_reputation, error }: ViewProps) {
         <ContentLayout
           header={
             <SpaceBetween size="m">
-              <Header variant="h1" description={`${node.node_id}`}>
+              <Header
+                variant="h1"
+                description={
+                  <p>
+                    {node.node_id}{" "}
+                    <Button
+                      iconName="copy"
+                      variant="inline-icon"
+                      onClick={() => {
+                        /* copy to clipboard implementation */
+                      }}
+                    />
+                  </p>
+                }
+              >
                 {node.alias}
               </Header>
             </SpaceBetween>
@@ -97,7 +112,9 @@ export default function NodeAnalysis({ local_reputation, error }: ViewProps) {
                     </div>
                   </ColumnLayout>
                   <ColumnLayout columns={1}>
-                    <div></div>
+                    <div className="content-center">
+                      <Badge>Last Update {time}</Badge>
+                    </div>
                     <div className="content-center">
                       <Table
                         columnDefinitions={[
@@ -136,14 +153,17 @@ export default function NodeAnalysis({ local_reputation, error }: ViewProps) {
                       />
                     </div>
                     <div className="content-center">
-                      <Badge>Last Update {time}</Badge>
+                      <Button variant="normal"> Show Channels Info</Button>
                     </div>
                   </ColumnLayout>
                 </Grid>
               </SpaceBetween>
             </Container>
 
-            <Metric />
+            <Metric
+              up_time={local_reputation?.up_time!}
+              forwards_rating={local_reputation?.forwards_rating!}
+            />
             <TableChannels channels_info={local_reputation?.channels_info!} />
           </SpaceBetween>
         </ContentLayout>

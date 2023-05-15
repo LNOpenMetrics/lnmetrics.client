@@ -15,3 +15,20 @@
   display: flex !important;
   justify-content: center !important;
 }
+
+.chart-container {
+  width: 100% !important;
+  height: 62.5vh !important;
+}
+
+.chart-container-pie {
+  /* width: 100% !important; */
+  height: 20vh !important;
+  min-width: 0 !important;
+  padding: 1em !important;
+}
+
+.pie-text {
+  margin: 0 !important;
+  text-align: center !important;
+}

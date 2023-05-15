@@ -64,11 +64,11 @@ export type ChannelInfo = {
 export type AllForwards = {
   ten_days: ForwardsRating;
   thirty_days: ForwardsRating;
-  up_time: Uptime;
 };
 
 export type LocalReputation = {
   last_update: number;
+  up_time: Uptime;
   forwards_rating: AllForwards;
   channels_info: Array<ChannelInfo>;
 };
