@@ -152,6 +152,7 @@ query LocalScoreOutput($network: String!, $node_id: String!) {
       channel_id
       capacity
       direction
+      age
       up_time {
         one_day
         ten_days

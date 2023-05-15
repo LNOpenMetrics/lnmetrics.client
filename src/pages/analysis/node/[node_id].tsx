@@ -18,28 +18,53 @@ import {
   Button,
 } from "@cloudscape-design/components";
 
-import { Node } from "@/model/localReputationMetric";
+import { LocalReputation, Node } from "@/model/localReputationMetric";
 import Provider from "@/utils/provider";
 import { useEffect, useState } from "react";
 import { QRCodeSVG } from "qrcode.react";
 import Metric from "@/components/metric/Metric.component";
 import { TableChannels } from "@/components/metric/TableChannels.component";
+import { GetServerSideProps } from "next";
 
-export default function NodeAnalysis() {
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  let reputation: LocalReputation | undefined;
+  let error = null;
+
+  let node_id: string = context.params!.node_id!.toString();
+  let client = Provider.getInstance().graphql();
+  try {
+    reputation = await client.getScoringLocalReputation({
+      network: "bitcoin",
+      node_id: node_id,
+    });
+    console.log(JSON.stringify(reputation));
+  } catch (e) {
+    console.error(`error: ${e}`);
+    error = `${e}`;
+  }
+  return {
+    props: {
+      local_reputation: reputation,
+      error: error,
+    },
+  };
+};
+
+type ViewProps = {
+  local_reputation?: LocalReputation;
+  error?: string;
+};
+
+export default function NodeAnalysis({ local_reputation, error }: ViewProps) {
   const route = useRouter();
   let [node, setNode] = useState<Node | undefined>(undefined);
-  const longEnUSFormatter = new Intl.DateTimeFormat("en-US", {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  });
   useEffect(() => {
     try {
       let node = Provider.getInstance().getModel<Node>("node");
       setNode(node);
     } catch (e) {
       console.error(`${e}`);
-      route.push("/analysis");
+      route.push("/analysis").then((value) => {});
     }
   });
   if (!node) {
@@ -119,7 +144,7 @@ export default function NodeAnalysis() {
             </Container>
 
             <Metric />
-            <TableChannels />
+            <TableChannels channels_info={local_reputation?.channels_info!} />
           </SpaceBetween>
         </ContentLayout>
       }

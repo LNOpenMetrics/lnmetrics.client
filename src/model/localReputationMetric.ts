@@ -45,10 +45,12 @@ export type Limit = {
 };
 
 export type ChannelInfo = {
-  last_update: number;
+  age: number;
   node_id: string;
   direction: string;
   limits: Limit;
+  channel_id: string;
+  capacity: string;
   forwards_rating: {
     one_day: ForwardsRating;
     ten_days: ForwardsRating;
