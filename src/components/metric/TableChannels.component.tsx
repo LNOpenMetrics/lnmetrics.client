@@ -6,17 +6,19 @@ import {
   Badge,
   Box,
   Button,
-  Container,
   Header,
   Table,
 } from "@cloudscape-design/components";
-import { ChannelInfo } from "@/model/localReputationMetric";
+import { ChannelInfo, Node } from "@/model/localReputationMetric";
+import { useRouter } from "next/navigation";
 
 type ViewProps = {
+  node: Node;
   channels_info: Array<ChannelInfo>;
 };
 
-export function TableChannels({ channels_info }: ViewProps) {
+export function TableChannels({ channels_info, node }: ViewProps) {
+  const router = useRouter();
   return (
     <Table
       header={
@@ -50,15 +52,27 @@ export function TableChannels({ channels_info }: ViewProps) {
           cell: (e) => e.capacity + " msat",
         },
         {
+          id: "status",
+          header: "Channel Status",
+          cell: (e) => (
+            <div className="content-center">
+              <Badge color={e.status == "OPEN" ? "green" : "red"}>
+                {e.status!}
+              </Badge>
+            </div>
+          ),
+        },
+        {
           id: "analysis",
           header: "Channel Analysis",
           cell: (e) => (
             <div className="content-center">
               <Button
-                disabled={true}
                 iconName="search"
                 onClick={() => {
-                  // TODO go to the analysis page
+                  router.push(
+                    `/analysis/channel/${node.node_id}?network=${node.network}&channel_id=${e.channel_id}`
+                  );
                 }}
               />
             </div>

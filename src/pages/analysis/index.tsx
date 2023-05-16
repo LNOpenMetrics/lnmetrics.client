@@ -111,7 +111,9 @@ export default function Analysis({ nodes, error }: ViewProps) {
                       variant="normal"
                       onClick={() => {
                         Provider.getInstance().setModel("node", node);
-                        router.push(`/analysis/node/${node.node_id}`);
+                        router.push(
+                          `/analysis/node/${node.node_id}?network=${node.network}`
+                        );
                       }}
                     >
                       Full Analysis

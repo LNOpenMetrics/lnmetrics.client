@@ -51,6 +51,10 @@ export type ChannelInfo = {
   limits: Limit;
   channel_id: string;
   capacity: string;
+  // this is added at runtime because we do not
+  // know the last update we do not
+  // know if this channel is open or closed
+  status?: string;
   forwards_rating: {
     one_day: ForwardsRating;
     ten_days: ForwardsRating;
@@ -71,4 +75,41 @@ export type LocalReputation = {
   up_time: Uptime;
   forwards_rating: AllForwards;
   channels_info: Array<ChannelInfo>;
+};
+
+export type RawLocalReputation = {
+  up_time: Array<RawUpTime>;
+  channels_info: Array<RawChannelInfo>;
+};
+
+export type LNFee = {
+  base: number;
+  per_msat: number;
+};
+
+export type RawUpTime = {
+  fee: LNFee;
+  forwards: {
+    success: number;
+    completed: number;
+  };
+};
+
+export type RawChannelInfo = {
+  node_id: string;
+  channel_id: string;
+  node_alias: string;
+  online: boolean;
+  direction: string;
+  capacity: number;
+  fee: LNFee;
+  forwards: Array<RawForwards>;
+};
+
+export type RawForwards = {
+  direction: string;
+  status: string;
+  failure_reason?: string;
+  failure_code?: string;
+  timestamp: string;
 };
