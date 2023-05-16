@@ -31,11 +31,12 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   let error = null;
 
   let node_id: string = context.params!.node_id!.toString();
+  let network: string = context.query!.network!.toString();
   let client = Provider.getInstance().graphql();
   try {
     // FIXME: TODO with the node id query the server by asking the node info by id
     reputation = await client.getScoringLocalReputation({
-      network: "bitcoin",
+      network: network,
       node_id: node_id,
     });
   } catch (e) {
