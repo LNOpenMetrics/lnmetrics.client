@@ -10,7 +10,11 @@ import {
 } from "@apollo/client";
 import { inject, singleton } from "tsyringe";
 
-import { LocalReputation, Node } from "@/model/localReputationMetric";
+import {
+  LocalReputation,
+  Node,
+  RawLocalReputation,
+} from "@/model/localReputationMetric";
 import * as querystring from "querystring";
 
 const defaultOptions: DefaultOptions = {
@@ -46,7 +50,8 @@ export class GraphQLClient {
       query: gql(`${ops.query}`),
       variables: ops.variables,
     });
-    if (result.error) {
+    if (result.error || !result.data) {
+      console.error(`${JSON.stringify(result)}`);
       throw new Error(`${result.error}`);
     }
     return result.data[ops.queryName];
@@ -90,19 +95,16 @@ export class GraphQLClient {
     });
   }
 
-  public async GetNodeInfo(args: { network: string; node_id: string }) {
-    return await this.call({
-      query: GET_NODE_INFO,
+  public async getRawLocalReputation(args: {
+    network: string;
+    node_id: string;
+    first: number;
+    end?: number;
+  }): Promise<RawLocalReputation> {
+    return await this.call<RawLocalReputation>({
+      query: GET_RAW_LOCAL_REPUTATION,
       variables: args,
-      queryName: "",
-    });
-  }
-
-  public async GetLocalScoreMetric(args: { network: string; node_id: string }) {
-    return await this.call({
-      query: GET_RAW_LOCAL_SCORE,
-      variables: args,
-      queryName: "",
+      queryName: "metricOne",
     });
   }
 }
@@ -214,5 +216,38 @@ query GetNodes($network: String!){
 }
 `;
 
-export const GET_NODE_INFO: string = "";
-export const GET_RAW_LOCAL_SCORE: string = "";
+export const GET_RAW_LOCAL_REPUTATION: string = `
+query GetRawMetric($network: String!, $node_id: String!, $first: Int!, $end: Int) {
+  metricOne(network: $network, node_id: $node_id, first: $first, last: $end) {
+    up_time {
+      fee {
+        base
+        per_msat
+      }
+      forwards {
+        failed
+        completed
+      }
+    }
+    channels_info {
+      node_id
+      channel_id
+      node_alias
+      online
+      direction
+      capacity
+      fee {
+        base
+        per_msat
+      }
+      forwards {
+        direction
+        status
+        timestamp
+        failure_code
+        failure_code
+      }
+    }
+  }
+}
+`;

@@ -25,6 +25,7 @@ import { QRCodeSVG } from "qrcode.react";
 import Metric from "@/components/metric/Metric.component";
 import { TableChannels } from "@/components/metric/TableChannels.component";
 import { GetServerSideProps } from "next";
+import NodeView from "@/components/NodeView.component";
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   let reputation: LocalReputation | undefined;
@@ -34,10 +35,29 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   let network: string = context.query!.network!.toString();
   let client = Provider.getInstance().graphql();
   try {
-    // FIXME: TODO with the node id query the server by asking the node info by id
     reputation = await client.getScoringLocalReputation({
       network: network,
       node_id: node_id,
+    });
+    // FIXME: the RFC should have the last_uptime inside the scoring.
+    // See evolution for https://github.com/LNOpenMetrics/lnmetrics.rfc/issues/25
+    let last_timestamp = reputation.last_update - 10 * 60;
+    let last_raw_metrics = await client.getRawLocalReputation({
+      network: network,
+      node_id: node_id,
+      // We get last  metrics
+      first: last_timestamp,
+    });
+    reputation.channels_info.forEach((value) => {
+      let channel_info = value;
+      let channels_in_raw = last_raw_metrics.channels_info.filter(
+        (value) => value.channel_id == channel_info.channel_id
+      );
+      if (channels_in_raw.length > 0) {
+        value.status = "OPEN";
+      } else {
+        value.status = "CLOSED";
+      }
     });
   } catch (e) {
     console.error(`error: ${e}`);
@@ -100,72 +120,16 @@ export default function NodeAnalysis({ local_reputation, error }: ViewProps) {
             </SpaceBetween>
           }
         >
-          <SpaceBetween size="m">
-            <Container>
-              <SpaceBetween size="m">
-                <Grid gridDefinition={[{ colspan: 6 }, { colspan: 6 }]}>
-                  <ColumnLayout columns={1}>
-                    <div className="content-center">
-                      <Badge color="blue">{node.alias}</Badge>
-                    </div>
-                    <div className="content-center">
-                      <QRCodeSVG size={300} level="H" value={node.node_id} />
-                    </div>
-                  </ColumnLayout>
-                  <ColumnLayout columns={1}>
-                    <div className="content-center">
-                      <Badge color="green">Last Update {time}</Badge>
-                    </div>
-                    <div className="content-center">
-                      <Table
-                        columnDefinitions={[
-                          {
-                            id: "type",
-                            header: "Address type",
-                            cell: (e) => e.type,
-                          },
-                          {
-                            id: "host",
-                            header: "Host",
-                            cell: (e) => e.host.substring(0, 10) + "...",
-                          },
-                          { id: "port", header: "Port", cell: (e) => e.port },
-                          {
-                            id: "copy",
-                            header: "Copy",
-                            cell: (e) => (
-                              <Button
-                                iconName="copy"
-                                onClick={() => {
-                                  navigator.clipboard.writeText(
-                                    `${node?.node_id}@${e.host}:${e.port}`
-                                  );
-                                }}
-                              />
-                            ),
-                          },
-                        ]}
-                        items={node.address}
-                        loadingText="Loading resources"
-                        trackBy="name"
-                        empty={
-                          <Box textAlign="center" color="inherit">
-                            <b>No address</b>
-                          </Box>
-                        }
-                      />
-                    </div>
-                  </ColumnLayout>
-                </Grid>
-              </SpaceBetween>
-            </Container>
-
+          <NodeView node={node} time={time}>
             <Metric
               up_time={local_reputation?.up_time!}
               forwards_rating={local_reputation?.forwards_rating!}
             />
-            <TableChannels channels_info={local_reputation?.channels_info!} />
-          </SpaceBetween>
+            <TableChannels
+              node={node!}
+              channels_info={local_reputation?.channels_info!}
+            />
+          </NodeView>
         </ContentLayout>
       }
     />
