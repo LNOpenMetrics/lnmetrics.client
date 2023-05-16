@@ -88,7 +88,7 @@ export default function NodeAnalysis({ local_reputation, error }: ViewProps) {
                       iconName="copy"
                       variant="inline-icon"
                       onClick={() => {
-                        /* copy to clipboard implementation */
+                        navigator.clipboard.writeText(`${node?.node_id}`);
                       }}
                     />
                   </p>
@@ -105,7 +105,7 @@ export default function NodeAnalysis({ local_reputation, error }: ViewProps) {
                 <Grid gridDefinition={[{ colspan: 6 }, { colspan: 6 }]}>
                   <ColumnLayout columns={1}>
                     <div className="content-center">
-                      <Badge>{node.alias}</Badge>
+                      <Badge color="blue">{node.alias}</Badge>
                     </div>
                     <div className="content-center">
                       <QRCodeSVG size={300} level="H" value={node.node_id} />
@@ -113,7 +113,7 @@ export default function NodeAnalysis({ local_reputation, error }: ViewProps) {
                   </ColumnLayout>
                   <ColumnLayout columns={1}>
                     <div className="content-center">
-                      <Badge>Last Update {time}</Badge>
+                      <Badge color="green">Last Update {time}</Badge>
                     </div>
                     <div className="content-center">
                       <Table
@@ -136,7 +136,9 @@ export default function NodeAnalysis({ local_reputation, error }: ViewProps) {
                               <Button
                                 iconName="copy"
                                 onClick={() => {
-                                  /* copy to clipboard implementation */
+                                  navigator.clipboard.writeText(
+                                    `${node?.node_id}@${e.host}:${e.port}`
+                                  );
                                 }}
                               />
                             ),
@@ -151,9 +153,6 @@ export default function NodeAnalysis({ local_reputation, error }: ViewProps) {
                           </Box>
                         }
                       />
-                    </div>
-                    <div className="content-center">
-                      <Button variant="normal"> Show Channels Info</Button>
                     </div>
                   </ColumnLayout>
                 </Grid>

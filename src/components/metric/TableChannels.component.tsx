@@ -49,6 +49,21 @@ export function TableChannels({ channels_info }: ViewProps) {
           header: "Channel Size",
           cell: (e) => e.capacity + " msat",
         },
+        {
+          id: "analysis",
+          header: "Channel Analysis",
+          cell: (e) => (
+            <div className="content-center">
+              <Button
+                disabled={true}
+                iconName="search"
+                onClick={() => {
+                  // TODO go to the analysis page
+                }}
+              />
+            </div>
+          ),
+        },
       ]}
       empty={
         <Box textAlign="center" color="inherit">
