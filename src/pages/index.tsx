@@ -7,6 +7,7 @@ import {
   SpaceBetween,
   Header,
   Container,
+  Badge,
 } from "@cloudscape-design/components";
 
 export default function Home() {
@@ -30,7 +31,9 @@ export default function Home() {
                 </q>{" "}
                 — Jim Barksdale
               </span>
-              <Alert>This is an alpha pre version of the explorer!</Alert>
+              <Alert>
+                <Badge color="blue">beta</Badge> version of the explorer!
+              </Alert>
             </SpaceBetween>
           }
         >
