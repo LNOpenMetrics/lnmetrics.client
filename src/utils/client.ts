@@ -168,6 +168,11 @@ query LocalScoreOutput($network: String!, $node_id: String!) {
         failure
         local_failure
       }
+      ten_days {
+        success
+        failure
+        local_failure
+      }
         thirty_days {
         success
         failure

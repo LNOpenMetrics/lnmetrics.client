@@ -13,6 +13,7 @@ import ForwardRatingView from "@/components/metric/ForwardRating.component";
 type ViewProps = {
   up_time: UptimeModel;
   forwards_rating: AllForwards;
+  title?: string;
 };
 
 export default function Metric(props: ViewProps) {
@@ -20,6 +21,7 @@ export default function Metric(props: ViewProps) {
     <Container>
       <Grid gridDefinition={[{ colspan: 6 }, { colspan: 6 }]}>
         <div className="content-center">
+          {props.title && <h4>{props.title}</h4>}
           <Uptime up_time={props.up_time} />
         </div>
         <div className="content-center">

@@ -59,6 +59,15 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
         value.status = "CLOSED";
       }
     });
+    let cache: Map<String, any> = new Map();
+    reputation.channels_info = reputation.channels_info.filter((value) => {
+      if (cache.has(value.channel_id)) {
+        return false;
+      } else {
+        cache.set(value.channel_id, value);
+        return true;
+      }
+    });
   } catch (e) {
     console.error(`error: ${e}`);
     error = `${e}`;

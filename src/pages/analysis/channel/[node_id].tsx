@@ -1,8 +1,6 @@
 import { GetServerSideProps } from "next";
 import {
-  Address,
   ChannelInfo,
-  LocalReputation,
   RawChannelInfo,
   Node,
 } from "@/model/localReputationMetric";
@@ -15,6 +13,7 @@ import {
   SpaceBetween,
 } from "@cloudscape-design/components";
 import NodeView from "@/components/NodeView.component";
+import Metric from "@/components/metric/Metric.component";
 
 type ViewChannelInfo = {
   reputation: Array<ChannelInfo>;
@@ -44,10 +43,10 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       first: reputation.last_update - 10 * 60,
     });
     let reputation_channel = reputation.channels_info.filter(
-      (value) => (value.channel_id = channel)
+      (value) => value.channel_id == channel && value.direction !== ""
     );
     let raw_channel_info = last_raw_metrics.channels_info.filter(
-      (value) => (value.channel_id = channel)
+      (value) => value.channel_id == channel && value.direction !== ""
     );
     let dir = raw_channel_info[0];
     channel_info = {
@@ -118,7 +117,15 @@ export default function NodeAnalysis({ channel_info, error }: ViewProps) {
           }
         >
           <NodeView node={channel_info?.node_info!} time={time}>
-            <></>
+            {channel_info?.reputation.map((value) => {
+              return (
+                <Metric
+                  title={value.direction}
+                  up_time={value.up_time!}
+                  forwards_rating={value.forwards_rating!}
+                />
+              );
+            })}
           </NodeView>
         </ContentLayout>
       }
