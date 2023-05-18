@@ -7,6 +7,8 @@ import {
   Box,
   Button,
   Header,
+  Popover,
+  StatusIndicator,
   Table,
 } from "@cloudscape-design/components";
 import { ChannelInfo, Node } from "@/model/localReputationMetric";
@@ -19,6 +21,14 @@ type ViewProps = {
 
 export function TableChannels({ channels_info, node }: ViewProps) {
   const router = useRouter();
+  channels_info = channels_info.sort((a, b) => {
+    if (a.age > b.age) {
+      return -1;
+    } else if (a.age < b.age) {
+      return 1;
+    }
+    return 0;
+  });
   return (
     <Table
       header={
@@ -32,9 +42,9 @@ export function TableChannels({ channels_info, node }: ViewProps) {
       items={channels_info}
       columnDefinitions={[
         {
-          id: "direction",
-          header: "Direction",
-          cell: (e) => e.direction,
+          id: "alias",
+          header: "Node Alias",
+          cell: (e) => e.alias,
         },
         {
           id: "short_channel_id",
@@ -63,11 +73,39 @@ export function TableChannels({ channels_info, node }: ViewProps) {
           ),
         },
         {
+          id: "score",
+          header: "Channel Score last 10 days",
+          cell: (e) => (
+            <div className="content-center">
+              <p>
+                {(e.up_time.ten_days * 0.1 +
+                  e.forwards_rating.ten_days.success * 10) %
+                  100}
+              </p>
+              <Popover
+                dismissButton={false}
+                position="top"
+                size="small"
+                triggerType="custom"
+                content={
+                  <StatusIndicator type="info">
+                    Simple scoring function calculated as follows: ($up_time *
+                    0.1 + $forwards_scoring * 10) % 100
+                  </StatusIndicator>
+                }
+              >
+                <Button iconName="status-info" variant="icon" />
+              </Popover>
+            </div>
+          ),
+        },
+        {
           id: "analysis",
           header: "Channel Analysis",
           cell: (e) => (
             <div className="content-center">
               <Button
+                disabled={e.status !== "OPEN"}
                 iconName="search"
                 onClick={() => {
                   router.push(

@@ -101,23 +101,25 @@ export default function Analysis({ nodes, error }: ViewProps) {
                   id: "node_network",
                   header: "Node Network",
                   sortingField: "network",
-                  cell: (e) => <Badge> {e.network.toUpperCase()} </Badge>,
+                  cell: (e) => (
+                    <div className="content-center">
+                      <Badge> {e.network.toUpperCase()} </Badge>
+                    </div>
+                  ),
                 },
                 {
                   id: "metrics",
                   header: "Analysis",
                   cell: (node) => (
                     <Button
-                      variant="normal"
+                      iconName="search"
                       onClick={() => {
                         Provider.getInstance().setModel("node", node);
                         router.push(
                           `/analysis/node/${node.node_id}?network=${node.network}`
                         );
                       }}
-                    >
-                      Full Analysis
-                    </Button>
+                    />
                   ),
                 },
               ]}

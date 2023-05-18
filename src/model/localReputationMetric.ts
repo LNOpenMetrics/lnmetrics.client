@@ -48,6 +48,7 @@ export type ChannelInfo = {
   age: number;
   node_id: string;
   direction: string;
+  alias: string;
   limits: Limit;
   channel_id: string;
   capacity: string;
@@ -55,13 +56,7 @@ export type ChannelInfo = {
   // know the last update we do not
   // know if this channel is open or closed
   status?: string;
-  forwards_rating: {
-    one_day: ForwardsRating;
-    ten_days: ForwardsRating;
-    thirty_days: ForwardsRating;
-    six_months: ForwardsRating;
-    full: ForwardsRating;
-  };
+  forwards_rating: AllForwards;
   up_time: Uptime;
 };
 

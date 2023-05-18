@@ -75,6 +75,7 @@ function preparePieChartData(rating: AllForwards): Array<DayData> {
 }
 
 export default function ForwardRatingView({ forwards_rating }: ViewProps) {
+  console.log(`${JSON.stringify(forwards_rating)}`);
   let data = preparePieChartData(forwards_rating);
   return (
     <Grid
